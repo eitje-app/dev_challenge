@@ -12,6 +12,10 @@ console.log(NOW);
 
 // Initialize data.
 const resultsByDate = [];
+const dateRange = {
+    min: null,
+    max: null
+};
 
 // assuming 1 month time interval of records
 JSON.parse(fs.readFileSync(DATA_FILE))
@@ -30,12 +34,18 @@ JSON.parse(fs.readFileSync(DATA_FILE))
         domain: workResult.Domain,
         learningObjective: workResult.LearningObjective
     })).forEach(workResult => {
-        const dateOfMonth = new Date(workResult.submitDateTime).getDate();
+        const submitDate = new Date(workResult.submitDateTime);
+        const dateOfMonth = submitDate.getDate();
         if (resultsByDate[dateOfMonth] === undefined) {
             resultsByDate[dateOfMonth] = [];
+            const timeString = submitDate.toISOString().split('T')[0];
+            if (dateRange.min === null) {
+                dateRange.min = timeString;
+            }
+            dateRange.max = timeString;
         }
         resultsByDate[dateOfMonth].push(workResult);
-    })
+    });
 
 app.use(function (req, res, next) {
 
@@ -50,14 +60,21 @@ app.get('/health', (req, res) => {
   res.send('ok');
 });
 
+app.get('/daterange', (req, res) => {
+    res.send(JSON.stringify(dateRange));
+});
+
 app.get('/workresults', (req, res) => {
     const dateOfMonth = req.query.date;
     const userId = req.query.userId;
-    let result = resultsByDate[dateOfMonth];
+    let result = resultsByDate[dateOfMonth] || [];
     if (userId !== undefined) {
         result = result.filter(workResult => workResult.userId == userId);
     }
-    res.send(JSON.stringify(result));
+    res.send(JSON.stringify({
+        dateOfMonth,
+        result
+    }));
 });
 
 http.listen(PORT, () => {

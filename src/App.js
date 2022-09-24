@@ -1,38 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getDateRange, getWorkResults} from './utils';
 
 function App() {
 
+    const [dateRange, setDateRange] = useState();
+    const [reportDate, setReportDate] = useState();
+    const [workResults, setWorkResults] = useState([]);
+
+    const onDateChange = (event) => {
+        setReportDate(event.target.value);
+    }
+
     useEffect(() => {
-        let request = 
-        fetch("http://localhost:4000/workresults?date=23&userId=40285", {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log('Success:', result);
-        })
-    }, [])
+        getDateRange().then(setDateRange);
+    }, []);
+
+    useEffect(() => {
+        if (dateRange) {
+            setReportDate(dateRange.max);
+        }
+    }, [dateRange]);
+
+    useEffect(() => {
+        if (reportDate) {
+            const dateOfMonth = Number(reportDate.split("-")[2]);
+            getWorkResults(dateOfMonth).then(serverResponse => setWorkResults(serverResponse.result));
+        }
+    }, [reportDate])
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            {reportDate && <input type="date" min={dateRange.min} max={dateRange.max} value={reportDate} onChange={onDateChange} />}
+            <div>
+                {JSON.stringify(workResults)}
+            </div>
         </div>
     );
 }
