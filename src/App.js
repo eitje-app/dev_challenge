@@ -1,16 +1,15 @@
-import './App.css';
 import { useEffect, useState } from 'react';
 import { getDateRange, getWorkResults} from './utils';
+import DateSelectorBar from './components/DateSelectorBar/DateSelectorBar';
+import './App.css';
+import Overview from './components/Overview/Overview';
 
 function App() {
 
     const [dateRange, setDateRange] = useState();
     const [reportDate, setReportDate] = useState();
+    const [referenceDate, setReferenceDate] = useState();
     const [workResults, setWorkResults] = useState([]);
-
-    const onDateChange = (event) => {
-        setReportDate(event.target.value);
-    }
 
     useEffect(() => {
         getDateRange().then(setDateRange);
@@ -31,9 +30,12 @@ function App() {
 
     return (
         <div className="App">
-            {reportDate && <input type="date" min={dateRange.min} max={dateRange.max} value={reportDate} onChange={onDateChange} />}
+            {reportDate && <DateSelectorBar min={dateRange.min} max={dateRange.max} 
+                reportDate={reportDate} onReportDateChange={setReportDate} 
+                referenceDate={referenceDate} onReferenceDateChange={setReferenceDate}
+            /> }
             <div>
-                {JSON.stringify(workResults)}
+                <Overview workResults={workResults} />
             </div>
         </div>
     );
