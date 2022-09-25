@@ -34,9 +34,7 @@ function App() {
                 reportDate={reportDate} onReportDateChange={setReportDate} 
                 referenceDate={referenceDate} onReferenceDateChange={setReferenceDate}
             /> }
-            <div>
-                <Overview workResults={workResults} />
-            </div>
+            <Overview workResults={workResults} />
         </div>
     );
 }
