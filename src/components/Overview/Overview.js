@@ -11,7 +11,7 @@ const OverviewRow = ({label, value, expanded=false}) => {
         setShowSubRows(!showSubRows);
     }
 
-    const hasSubRows = isNaN(value);
+    const hasSubRows = value instanceof Map;
     const numericValue = hasSubRows ? value.get(TOTAL) : value;
 
     const subRows = [];
