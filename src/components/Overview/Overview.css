@@ -1,0 +1,33 @@
+.overview {
+    text-align: left;
+    width: 500px;
+    padding-bottom: 20px;
+}
+
+.overview-row {
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.overview-row-collapse-expand-sign {
+    display: inline-block;
+    width: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.overview-row-subrows {
+    display: none;
+}
+
+.overview-row-subrows-visible {
+    display: block;
+}
+
+.overview-row-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
