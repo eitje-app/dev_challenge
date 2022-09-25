@@ -6,7 +6,7 @@ const Overview = ({workResults}) => {
 
     for (const [key, value] of Object.entries(SUBJECT)) {
         overviewRows.push(
-            <div className="overview-row">
+            <div className="overview-row" key={key}>
                 {value}: {workResults.filter(result => result.subject === value).length}
             </div>
         )
