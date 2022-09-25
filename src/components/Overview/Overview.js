@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TOTAL } from "../../constants";
+import { META } from "../../constants";
 import { getWorkResultsOverview } from "../../utils";
 import './Overview.css';
 
@@ -12,12 +12,12 @@ const OverviewRow = ({label, value, expanded=false}) => {
     }
 
     const hasSubRows = value instanceof Map;
-    const numericValue = hasSubRows ? value.get(TOTAL) : value;
+    const metaData = hasSubRows ? value.get(META) : value;
 
     const subRows = [];
     if (hasSubRows) {
         value.forEach((subValue, key) => {
-            if (key !== TOTAL) {
+            if (key !== META) {
                 subRows.push(
                     <OverviewRow value={subValue} label={key} />
                 );
@@ -32,7 +32,7 @@ const OverviewRow = ({label, value, expanded=false}) => {
                     {hasSubRows && <span className="overview-row-collapse-expand-sign" onClick={toggleShowRows}>{showSubRows ? "-" : "+"}</span>}
                     {label}
                 </span>
-                <span>{numericValue}</span>
+                <span>{metaData.correct} of {metaData.total}</span>
             </div>
             {hasSubRows && <div className={`overview-row-subrows ${showSubRows ? "overview-row-subrows-visible" : ""}`}>
                 {subRows}

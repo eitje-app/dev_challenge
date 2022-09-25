@@ -1,4 +1,4 @@
-import {BACKEND_URL, TOTAL} from "./constants";
+import {BACKEND_URL, META} from "./constants";
 
 const serverCall = (url) => (
     fetch(url, {
@@ -19,8 +19,16 @@ export const getWorkResults = (date) => {
     return serverCall(url);
 };
 
-const setIncrementField = (map, key) => {
-    map.has(key) ? map.set(key, map.get(key) + 1) : map.set(key, 1);
+const setCorrectTotalCount = (map, key, correct) => {
+    if (!map.has(key)) {
+        map.set(key, {
+            correct: 0,
+            total: 0
+        });
+    }
+    let obj = map.get(key);
+    obj.total++;
+    correct && obj.correct++;
 }
 
 const getSetMap = (parentMap, key, setterFunction) => {
@@ -33,15 +41,15 @@ const getSetMap = (parentMap, key, setterFunction) => {
 export const getWorkResultsOverview = (workResults) => {
     const overviewMap = new Map();
 
-    workResults.forEach(({subject, domain, learningObjective, exerciseId}) => {
+    workResults.forEach(({subject, domain, learningObjective, exerciseId, correct}) => {
         getSetMap(overviewMap, subject, (domainMap) => {
             getSetMap(domainMap, domain, (learningObjectiveMap) => {
                 getSetMap(learningObjectiveMap, learningObjective, (exerciseIdMap) => {
-                    setIncrementField(exerciseIdMap, exerciseId);
-                    setIncrementField(exerciseIdMap, TOTAL);
-                    setIncrementField(learningObjectiveMap, TOTAL);
-                    setIncrementField(domainMap, TOTAL);
-                    setIncrementField(overviewMap, TOTAL);
+                    setCorrectTotalCount(exerciseIdMap, exerciseId, correct);
+                    setCorrectTotalCount(exerciseIdMap, META, correct);
+                    setCorrectTotalCount(learningObjectiveMap, META, correct);
+                    setCorrectTotalCount(domainMap, META, correct);
+                    setCorrectTotalCount(overviewMap, META, correct);
                 });
             });
         });

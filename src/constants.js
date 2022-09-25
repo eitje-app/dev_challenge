@@ -1,2 +1,3 @@
 export const BACKEND_URL = "http://localhost:4000";
-export const TOTAL = "__Total__";
+export const META = "__Meta__";
+
