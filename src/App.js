@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getDateRange, getWorkResults} from './utils';
 import DateSelectorBar from './components/DateSelectorBar/DateSelectorBar';
-import './App.css';
 import Overview from './components/Overview/Overview';
+import './App.css';
 
 function App() {
 
