@@ -43,6 +43,12 @@ const OverviewRow = ({label, value, expanded=false}) => {
 
 const Overview = ({workResults}) => {
 
+    if (workResults.length === 0) {
+        return (
+            <div>No results</div>
+        )
+    }
+
     let workResultsOverview = getWorkResultsOverview(workResults);
 
     return (
