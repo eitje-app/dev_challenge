@@ -32,7 +32,7 @@ const OverviewRow = ({label, value, expanded=false}) => {
                     {hasSubRows && <span className="overview-row-collapse-expand-sign" onClick={toggleShowRows}>{showSubRows ? "-" : "+"}</span>}
                     {label}
                 </span>
-                <span>{metaData.correct} of {metaData.total}</span>
+                <span>{metaData.correct} of {metaData.total} ({Math.round(metaData.correct / metaData.total * 100)}%)</span>
             </div>
             {hasSubRows && <div className={`overview-row-subrows ${showSubRows ? "overview-row-subrows-visible" : ""}`}>
                 {subRows}
@@ -53,7 +53,7 @@ const Overview = ({workResults}) => {
 
     return (
         <div className="overview"> 
-            <OverviewRow value={workResultsOverview} label="Exercises completed today" expanded={true} />
+            <OverviewRow value={workResultsOverview} label="Exercises correctly answered today" expanded={true} />
         </div>
     )
 }
