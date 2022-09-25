@@ -5,7 +5,7 @@
 }
 
 .overview-row {
-    padding-left: 50px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
 }
