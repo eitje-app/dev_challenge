@@ -88,6 +88,16 @@ const Overview = ({workResults, referenceResults}) => {
         <div className="overview">
             {workResults.length === 0 && <div>No data for report period</div>}
             {workResults.length > 0 && <>
+                <div className="overview-explanation">
+                    <div className="overview-explanation-column-headers">
+                        <div>&#x2611;</div>
+                        <div>&#120506;</div>
+                        <div>%</div>
+                        <div>&#x2611; <sub>ref</sub></div>
+                        <div>&#120506; <sub>ref</sub></div>
+                        <div>% <sub>ref</sub></div>
+                    </div>
+                </div>
                 <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />
             </>}
         </div>

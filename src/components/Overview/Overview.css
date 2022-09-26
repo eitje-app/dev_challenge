@@ -4,6 +4,12 @@
     padding-bottom: 20px;
 }
 
+.overview-explanation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .overview-row {
     padding-left: 30px;
     display: flex;
@@ -55,8 +61,8 @@
     word-break: break-all;
 }
 
-
-.metadata {
+.metadata, 
+.overview-explanation-column-headers {
     display: grid;
     grid-template-columns: repeat(6, 70px);
     text-align: right;
