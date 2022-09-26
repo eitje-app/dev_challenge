@@ -4,7 +4,7 @@ import { getWorkResultsOverview } from "../../utils";
 import './Overview.css';
 
 const MetaData = ({value, refValue}) => {
-    
+
     const hasSubRows = value instanceof Map;
     const metaData = hasSubRows ? value.get(META) : value;
     let refMetaData;
@@ -14,10 +14,11 @@ const MetaData = ({value, refValue}) => {
     }
 
     return (
-        <>
+        <div className="metadata">
             <span>{metaData.correct} of {metaData.total} ({Math.round(metaData.correct / metaData.total * 100)}%)</span>
-            {refValue !== undefined && <span>{refMetaData.correct} of {refMetaData.total} ({Math.round(refMetaData.correct / refMetaData.total * 100)}%)</span> }
-        </>
+            {refMetaData !== undefined && <span>{refMetaData.correct} of {refMetaData.total} ({Math.round(refMetaData.correct / refMetaData.total * 100)}%)</span> }
+            {refMetaData === undefined && <span>no ref data</span> }
+        </div>
     )
 }
 
