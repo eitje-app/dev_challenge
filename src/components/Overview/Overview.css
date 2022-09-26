@@ -1,7 +1,11 @@
 .overview {
-    text-align: left;
     width: 750px;
+    text-align: left;
     padding-bottom: 20px;
+    position: absolute;
+    top: 90px;
+    bottom: 20px;
+    overflow-y: auto;
 }
 
 .overview-explanation {
