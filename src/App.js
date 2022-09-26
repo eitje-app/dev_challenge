@@ -10,6 +10,7 @@ function App() {
     const [reportDate, setReportDate] = useState();
     const [referenceDate, setReferenceDate] = useState();
     const [workResults, setWorkResults] = useState([]);
+    const [referenceResults, setReferenceResults] = useState([]);
 
     useEffect(() => {
         getDateRange().then(setDateRange);
@@ -28,13 +29,20 @@ function App() {
         }
     }, [reportDate])
 
+    useEffect(() => {
+        if (referenceDate) {
+            const dateOfMonth = Number(referenceDate.split("-")[2]);
+            getWorkResults(dateOfMonth).then(serverResponse => setReferenceResults(serverResponse.result));
+        }
+    }, [referenceDate])
+
     return (
         <div className="App">
             {reportDate && <DateSelectorBar min={dateRange.min} max={dateRange.max} 
                 reportDate={reportDate} onReportDateChange={setReportDate} 
                 referenceDate={referenceDate} onReferenceDateChange={setReferenceDate}
             /> }
-            <Overview workResults={workResults} />
+            <Overview workResults={workResults} referenceResults={referenceResults} />
         </div>
     );
 }
