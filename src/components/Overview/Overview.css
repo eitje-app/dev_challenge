@@ -1,6 +1,6 @@
 .overview {
     text-align: left;
-    width: 700px;
+    width: 750px;
     padding-bottom: 20px;
 }
 
@@ -29,10 +29,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #A4A4A4;
+}
+
+.overview-row:nth-child(odd) > .overview-row-main {
+    background-color: #D9EEF3;
+}
+
+.overview-row:nth-child(even) >.overview-row-main {
+    background-color: #CDC5EB
 }
 
 .overview-row-main-label {
+    padding: 5px;
     display: flex;
     align-items: center;
 }

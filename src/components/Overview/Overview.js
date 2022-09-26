@@ -80,7 +80,7 @@ const Overview = ({workResults, referenceResults}) => {
 
     return (
         <div className="overview"> 
-            <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Exercises correctly answered today" expanded={true} />
+            <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total" expanded={true} />
         </div>
     )
 }
