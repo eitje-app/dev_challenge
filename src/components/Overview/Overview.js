@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { META } from "../../constants";
 import { getWorkResultsOverview } from "../../utils";
 import './Overview.css';
@@ -11,6 +11,10 @@ const MetaData = ({value, refValue}) => {
     if (refValue !== undefined) {
         const refHasSubRows = refValue instanceof Map;
         refMetaData = refHasSubRows ? refValue.get(META) : refValue;
+    }
+
+    if (metaData === undefined) {
+        return <></>
     }
 
     return (
@@ -69,18 +73,21 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
 
 const Overview = ({workResults, referenceResults}) => {
 
-    if (workResults.length === 0) {
-        return (
-            <div>No results</div>
-        )
-    }
+    const [workResultsOverview, setWorkResultsOverview] = useState();
+    const [referenceResultsOverview, setReferenceResultsOverview] = useState();
 
-    let workResultsOverview = getWorkResultsOverview(workResults);
-    let referenceResultsOverview = getWorkResultsOverview(referenceResults)
+    useEffect(() => {
+        setWorkResultsOverview(getWorkResultsOverview(workResults));
+    }, [workResults]);
+
+    useEffect(() => {
+        setReferenceResultsOverview(getWorkResultsOverview(referenceResults));
+    }, [referenceResults]);
 
     return (
-        <div className="overview"> 
-            <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total" expanded={true} />
+        <div className="overview">
+            {workResults.length === 0 && <div>No data for report period</div>}
+            {workResults.length > 0 && <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />}
         </div>
     )
 }
