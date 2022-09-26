@@ -32,6 +32,11 @@
     border-bottom: 1px solid gray;
 }
 
+.overview-row-main-label {
+    display: flex;
+    align-items: center;
+}
+
 .metadata {
     display: grid;
     grid-template-columns: repeat(6, 70px);
