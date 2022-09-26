@@ -15,9 +15,16 @@ const MetaData = ({value, refValue}) => {
 
     return (
         <div className="metadata">
-            <span>{metaData.correct} of {metaData.total} ({Math.round(metaData.correct / metaData.total * 100)}%)</span>
-            {refMetaData !== undefined && <span>{refMetaData.correct} of {refMetaData.total} ({Math.round(refMetaData.correct / refMetaData.total * 100)}%)</span> }
-            {refMetaData === undefined && <span>no ref data</span> }
+            <div>{metaData.correct}</div>
+            <div>{metaData.total}</div> 
+            <div>{Math.round(metaData.correct / metaData.total * 100)}%</div>
+
+            {refMetaData !== undefined && <>
+                <div>{refMetaData.correct}</div>
+                <div>{refMetaData.total}</div>
+                <div>{Math.round(refMetaData.correct / refMetaData.total * 100)}%</div>
+            </>}
+            {refMetaData === undefined && <div className="metadata-noref">no reference data</div> }
         </div>
     )
 }
@@ -47,10 +54,10 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
     return (
         <div className="overview-row">
             <div className="overview-row-main">
-                <span>
+                <div>
                     {hasSubRows && <span className="overview-row-collapse-expand-sign" onClick={toggleShowRows}>{showSubRows ? "-" : "+"}</span>}
                     {label}
-                </span>
+                </div>
                 <MetaData value={value} refValue={refValue} />
             </div>
             {hasSubRows && <div className={`overview-row-subrows ${showSubRows ? "overview-row-subrows-visible" : ""}`}>

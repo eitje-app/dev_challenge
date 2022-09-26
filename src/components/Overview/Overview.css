@@ -1,6 +1,6 @@
 .overview {
     text-align: left;
-    width: 600px;
+    width: 700px;
     padding-bottom: 20px;
 }
 
@@ -30,4 +30,15 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid gray;
+}
+
+.metadata {
+    display: grid;
+    grid-template-columns: repeat(6, 70px);
+    text-align: right;
+}
+
+.metadata-noref {
+    grid-column: 4 / 7;
+    text-align: center;
 }
