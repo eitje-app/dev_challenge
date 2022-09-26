@@ -5,16 +5,21 @@
 }
 
 .overview-row {
-    padding-left: 20px;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
 }
 
 .overview-row-collapse-expand-sign {
     display: inline-block;
-    width: 20px;
+    min-width: 30px;
     font-weight: bold;
+    text-align: center;
     cursor: pointer;
+}
+
+.overview-row-collapse-expand-sign:hover {
+    transform: scale(1.5);
 }
 
 .overview-row-subrows {
@@ -40,16 +45,22 @@
     background-color: #CDC5EB
 }
 
-.overview-row-main-label {
+.overview-row-main-label-container {
     padding: 5px;
     display: flex;
     align-items: center;
 }
 
+.overview-row-main-label {
+    word-break: break-all;
+}
+
+
 .metadata {
     display: grid;
     grid-template-columns: repeat(6, 70px);
     text-align: right;
+    padding-right: 5px;
 }
 
 .metadata-noref {

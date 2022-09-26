@@ -58,9 +58,9 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
     return (
         <div className="overview-row">
             <div className="overview-row-main">
-                <div className="overview-row-main-label">
+                <div className="overview-row-main-label-container">
                     {hasSubRows && <div className="overview-row-collapse-expand-sign" onClick={toggleShowRows}>{showSubRows ? "-" : "+"}</div>}
-                    <div>{label}</div>
+                    <div className="overview-row-main-label">{label}</div>
                 </div>
                 <MetaData value={value} refValue={refValue} />
             </div>
