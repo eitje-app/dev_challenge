@@ -1,9 +1,10 @@
 .date-selector {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .date-selector-title {
-    padding-right: 20px;
+    padding: 5px 0;
 }

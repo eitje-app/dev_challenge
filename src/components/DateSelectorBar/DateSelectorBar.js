@@ -25,6 +25,7 @@ const DateSelectorBar = ({min, max, reportDate, onReportDateChange, referenceDat
 
     return (
         <div className="date-selector-bar">
+            <div>logo goes here</div>
             <DateSelector title="Report Date" min={min} max={max} selectedDate={reportDate} onDateChange={onReportDateChange} />
             {referenceDate &&
                 <DateSelector title="Reference Date" min={min} max={reportDate} selectedDate={referenceDate} onDateChange={onReferenceDateChange} />}
