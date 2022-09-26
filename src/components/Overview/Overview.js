@@ -8,25 +8,39 @@ const MetaData = ({value, refValue}) => {
     const hasSubRows = value instanceof Map;
     const metaData = hasSubRows ? value.get(META) : value;
     let refMetaData;
+    let percentage;
+    let refPercentage;
+    let percentageDiff;
+
+    if (metaData === undefined) {
+        return <></>
+    }
+
+    percentage = Math.round(metaData.correct / metaData.total * 100);
+
     if (refValue !== undefined) {
         const refHasSubRows = refValue instanceof Map;
         refMetaData = refHasSubRows ? refValue.get(META) : refValue;
     }
 
-    if (metaData === undefined) {
-        return <></>
+    if (refMetaData !== undefined) {
+        refPercentage = Math.round(refMetaData.correct / refMetaData.total * 100);
+        percentageDiff = percentage - refPercentage;
     }
 
     return (
         <div className="metadata">
             <div>{metaData.correct}</div>
             <div>{metaData.total}</div> 
-            <div>{Math.round(metaData.correct / metaData.total * 100)}%</div>
+            <div>{percentage}%</div>
 
             {refMetaData !== undefined && <>
                 <div>{refMetaData.correct}</div>
                 <div>{refMetaData.total}</div>
-                <div>{Math.round(refMetaData.correct / refMetaData.total * 100)}%</div>
+                <div>{refPercentage}%</div>
+                <div className={percentageDiff < 0 ? "metadata-decline" : (percentageDiff > 0 ? "metadata-growth" : "")}>
+                    {Math.abs(percentageDiff)}%
+                </div>
             </>}
             {refMetaData === undefined && <div className="metadata-noref">no reference data</div> }
         </div>
@@ -96,6 +110,7 @@ const Overview = ({workResults, referenceResults}) => {
                         <div>&#x2611; <sub>ref</sub></div>
                         <div>&#120506; <sub>ref</sub></div>
                         <div>% <sub>ref</sub></div>
+                        <div>% &Delta;</div>
                     </div>
                 </div>
                 <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />
