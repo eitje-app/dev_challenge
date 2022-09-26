@@ -87,7 +87,9 @@ const Overview = ({workResults, referenceResults}) => {
     return (
         <div className="overview">
             {workResults.length === 0 && <div>No data for report period</div>}
-            {workResults.length > 0 && <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />}
+            {workResults.length > 0 && <>
+                <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />
+            </>}
         </div>
     )
 }

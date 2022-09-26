@@ -3,3 +3,7 @@
     grid-template-columns: 350px 200px 200px;
     padding: 20px 0;
 }
+
+.date-selector-logo {
+    background-image: url("../../ld_logo2.png");
+}
