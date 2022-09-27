@@ -68,7 +68,7 @@ app.get('/workresults', (req, res) => {
     const {date} = req.query;
     let result = resultsByDate[date] || [];
     res.send(JSON.stringify({
-        dateOfMonth,
+        date,
         result
     }));
 });
