@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { META } from "../../constants";
 import { getWorkResultsOverview } from "../../utils";
+import { Link } from "react-router-dom";
 import './Overview.css';
 
 const MetaData = ({value, refValue}) => {
@@ -74,7 +75,7 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
             <div className="overview-row-main">
                 <div className="overview-row-main-label-container">
                     {hasSubRows && <div className="overview-row-collapse-expand-sign" onClick={toggleShowRows}>{showSubRows ? "-" : "+"}</div>}
-                    <div className="overview-row-main-label">{label}</div>
+                    <div className="overview-row-main-label">{hasSubRows && label}{!hasSubRows && <Link to={`exercise/${label}`}>{label}</Link>}</div>
                 </div>
                 <MetaData value={value} refValue={refValue} />
             </div>

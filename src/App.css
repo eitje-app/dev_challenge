@@ -2,3 +2,9 @@
   text-align: center;
   font-family: 'Roboto', sans-serif;
 }
+
+.overview-detailview-container {
+  display: grid;
+  grid-template-columns: 820px auto;
+  height: calc(100vh - 120px);
+}

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 import { getDateRange, getWorkResults} from './utils';
 import DateSelectorBar from './components/DateSelectorBar/DateSelectorBar';
 import Overview from './components/Overview/Overview';
+import DetailView from './components/DetailView/DetailView';
+import Exercise from './components/Exercise/Exercise';
 import './App.css';
 
 function App() {
@@ -41,8 +44,17 @@ function App() {
             {reportDate && <DateSelectorBar min={dateRange.min} max={dateRange.max} 
                 reportDate={reportDate} onReportDateChange={setReportDate} 
                 referenceDate={referenceDate} onReferenceDateChange={setReferenceDate}
-            /> }
-            <Overview workResults={workResults} referenceResults={referenceResults} />
+            />}
+            <div className="overview-detailview-container">
+                <Overview workResults={workResults} referenceResults={referenceResults} />
+                <Routes>
+                    <Route path="/" element={<DetailView />}>
+                        <Route index element={<div>index</div>} />
+                        <Route path="exercise/:id" element={<Exercise />} />
+                        <Route path="*" element={<div>no match</div>} />
+                    </Route>
+                </Routes>
+            </div>
         </div>
     );
 }
