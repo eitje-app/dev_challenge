@@ -42,6 +42,8 @@ const Exercise = ({reportDate}) => {
                     })}
                 </>
             }
+            {exerciseDetails && exerciseDetails.length === 0 &&
+            <div>Geen data</div>}
         </div>
     )
 };
