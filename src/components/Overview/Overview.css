@@ -44,15 +44,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #A4A4A4;
+    border-bottom: 1px solid #FFFFFF;
 }
 
 .overview-row:nth-child(odd) > .overview-row-main {
-    background-color: #D9EEF3;
+    background: linear-gradient(0.25turn, #FFFFFF, #D9EEF3);
 }
 
 .overview-row:nth-child(even) >.overview-row-main {
-    background-color: #CDC5EB
+    background: linear-gradient(0.25turn, #FFFFFF, #CDC5EB);
 }
 
 .overview-row-main-label-container {
