@@ -42,7 +42,7 @@ const MetaData = ({value, refValue}) => {
                     {Math.abs(percentageDiff)}%
                 </div>
             </>}
-            {refMetaData === undefined && <div className="metadata-noref">no reference data</div> }
+            {refMetaData === undefined && <div className="metadata-noref">geen referentiegegevens</div> }
         </div>
     )
 }
@@ -100,7 +100,7 @@ const Overview = ({workResults, referenceResults}) => {
 
     return (
         <div className="overview">
-            {workResults.length === 0 && <div className="overview-nodata">No data for report period</div>}
+            {workResults.length === 0 && <div className="overview-nodata">Geen gegevens voor rapportperiode</div>}
             {workResults.length > 0 && <>
                 <div className="overview-explanation">
                     <div className="overview-explanation-column-headers">
@@ -113,7 +113,7 @@ const Overview = ({workResults, referenceResults}) => {
                         <div>% &Delta;</div>
                     </div>
                 </div>
-                <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Total assignments" expanded={true} />
+                <OverviewRow value={workResultsOverview} refValue={referenceResultsOverview} label="Alle opdrachten" expanded={true} />
             </>}
         </div>
     )
