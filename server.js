@@ -65,12 +65,8 @@ app.get('/daterange', (req, res) => {
 });
 
 app.get('/workresults', (req, res) => {
-    const dateOfMonth = req.query.date;
-    const userId = req.query.userId;
-    let result = resultsByDate[dateOfMonth] || [];
-    if (userId !== undefined) {
-        result = result.filter(workResult => workResult.userId == userId);
-    }
+    const {date} = req.query;
+    let result = resultsByDate[date] || [];
     res.send(JSON.stringify({
         dateOfMonth,
         result
@@ -78,12 +74,11 @@ app.get('/workresults', (req, res) => {
 });
 
 app.get('/exercise', (req, res) => {
-    const exerciseId = req.query.id;
-    const dateOfMonth = req.query.date;
-    let result = resultsByDate[dateOfMonth] || [];
+    const {id, date} = req.query;
+    let result = resultsByDate[date] || [];
     res.send(JSON.stringify({
-        id: exerciseId,
-        result: result.filter(workResult => workResult.exerciseId == exerciseId)
+        id,
+        result: result.filter(workResult => workResult.exerciseId == id)
     }));
 });
 
