@@ -33,7 +33,7 @@ function App() {
 
     useEffect(() => {
         if (referenceDate) {
-            getWorkResults(reportDate).then(serverResponse => setReferenceResults(serverResponse.result));
+            getWorkResults(referenceDate).then(serverResponse => setReferenceResults(serverResponse.result));
         }
     }, [referenceDate])
 

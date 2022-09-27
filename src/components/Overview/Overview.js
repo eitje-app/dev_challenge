@@ -59,12 +59,13 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
     const hasSubRows = value instanceof Map;
 
     const subRows = [];
+    let i = 0;
     if (hasSubRows) {
         value.forEach((subValue, key) => {
             let subRefValue = refValue instanceof Map ? refValue.get(key) : undefined;
             if (key !== META) {
                 subRows.push(
-                    <OverviewRow label={key} value={subValue} refValue={subRefValue} />
+                    <OverviewRow label={key} value={subValue} refValue={subRefValue} key={i++} />
                 );
             }
         });
