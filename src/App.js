@@ -27,15 +27,13 @@ function App() {
 
     useEffect(() => {
         if (reportDate) {
-            const dateOfMonth = Number(reportDate.split("-")[2]);
-            getWorkResults(dateOfMonth).then(serverResponse => setWorkResults(serverResponse.result));
+            getWorkResults(reportDate).then(serverResponse => setWorkResults(serverResponse.result));
         }
     }, [reportDate])
 
     useEffect(() => {
         if (referenceDate) {
-            const dateOfMonth = Number(referenceDate.split("-")[2]);
-            getWorkResults(dateOfMonth).then(serverResponse => setReferenceResults(serverResponse.result));
+            getWorkResults(reportDate).then(serverResponse => setReferenceResults(serverResponse.result));
         }
     }, [referenceDate])
 
@@ -49,8 +47,8 @@ function App() {
                 <Overview workResults={workResults} referenceResults={referenceResults} />
                 <Routes>
                     <Route path="/" element={<DetailView />}>
-                        <Route index element={<div>index</div>} />
-                        <Route path="exercise/:id" element={<Exercise />} />
+                        <Route index element={<div>Kies opdracht</div>} />
+                        <Route path="exercise/:id" element={<Exercise reportDate={reportDate} />} />
                         <Route path="*" element={<div>no match</div>} />
                     </Route>
                 </Routes>

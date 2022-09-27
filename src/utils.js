@@ -15,9 +15,15 @@ export const getDateRange = () => {
 };
 
 export const getWorkResults = (date) => {
-    const url = `${BACKEND_URL}/workresults?date=${date}`;
+    const dateOfMonth = Number(date.split("-")[2]);
+    const url = `${BACKEND_URL}/workresults?date=${dateOfMonth}`;
     return serverCall(url);
 };
+
+export const getExerciseDetail = (id, date) => {
+    const dateOfMonth = Number(date.split("-")[2]);
+    return serverCall(`${BACKEND_URL}/exercise?id=${id}&date=${dateOfMonth}`);
+}
 
 const setCorrectTotalCount = (map, key, correct) => {
     if (!map.has(key)) {
