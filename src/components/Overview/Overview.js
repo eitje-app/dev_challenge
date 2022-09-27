@@ -100,7 +100,7 @@ const Overview = ({workResults, referenceResults}) => {
 
     return (
         <div className="overview">
-            {workResults.length === 0 && <div>No data for report period</div>}
+            {workResults.length === 0 && <div className="overview-nodata">No data for report period</div>}
             {workResults.length > 0 && <>
                 <div className="overview-explanation">
                     <div className="overview-explanation-column-headers">

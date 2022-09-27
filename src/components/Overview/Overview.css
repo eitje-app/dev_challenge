@@ -93,3 +93,7 @@
     grid-column: 4 / 8;
     text-align: center;
 }
+
+.overview-nodata {
+    text-align: center;
+}
