@@ -17,3 +17,35 @@ Maak een pull request aan waarin je in ieder geval een readme hebt opgenomen die
 Deze opdracht is expres ruim geformuleerd. Je mag zelf je tools kiezen, de enige vereiste is dat je React gebruikt. Je mag je tijd besteden aan de aspecten die je zelf het belangrijkst vindt. Er is geen tijd om alles te doen: maak een keuze.
 Je mag frameworks en libraries gebruiken. 
 De minimale requirement in de opdracht is "waar heeft mijn klas vandaag aan gewerkt". Dat kan in een lijstje, in een grafische vorm, het kan als getallen of kleuren. Je kan het vergelijken met vorige week of een gemiddelde score. Probeer te bedenken wat voor een leerkracht in de klas het belangrijkst is.
+
+
+### Running the client and server
+
+Simply run `npm install` to install the dependencies.
+You also need to start a node server that will feed the data to the client: `node server.js` (from the root of the project)
+This was built and tested with Node 14. The server runs on port 4000. To change that modify the constant PORT in `server.js` and url in `constants.js`.
+The server expects client to run on localhost port 3000, if it's not the case - modify `Access-Control-Allow-Origin` header value in `server.js`.
+
+To start the client side application run `npm start`.
+NOTE: it is designed to work over HTTP. If you have HTTPS=true set as a system variable - temporarily remove it, so that your npm will start the client on HTTP not HTTPS.
+
+### Verifying server is running
+After starting the server, you should see the 'Listening on 4000' message.
+
+## How to use
+Applictation should show the tree like overview of the assignments that students have worked on the given date.
+You can expand and collapse cathegories, select different report date, select different reference date (should be in the past relative to report date) and compare the results.
+When clicked on individual assignment - the detail view shows all the answers for the given day to the given assignment.
+
+### Feature!
+As everything is persisted in a URL - you can copypaste it in the different browser and still see that same detail and overview will expand to the same level.
+In the real life it can help teachers to share reports simply by sharing URLs.
+Reference date jumps one day before the report date when your selected report date is before the current reference date
+
+### Things that are missing
+I was going to add some charting here, but it is already taking too much time.
+Also errors in client server communication are not handled properly. 
+Styling is very basic.
+No tests :-(
+Some calendar (date selection) logic is missing.
+
