@@ -1,0 +1,11 @@
+.date-selector-bar {
+    display: grid;
+    grid-template-columns: minmax(350px, 60%) 200px 200px;
+    justify-content: end;
+    padding: 20px 60px;
+}
+
+.date-selector-logo {
+    background-image: url("../../ld_logo2.png");
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,27 @@
+.exercise-detail {
+    padding: 10px;
+}
+
+.exercise-detail-meta {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 18px;
+    padding-bottom: 20px;
+}
+
+.exercise-detail-answers {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 5px 0;
+}
+
+.exercise-detail-answers:nth-child(odd) {
+    background-color: #CDC5EB;
+} 
+
+.exercise-detail-answers-header {
+    padding: 10px 0;
+    background-color: #FFFFFF;
+}
