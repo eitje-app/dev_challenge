@@ -8,17 +8,11 @@ function App() {
     return (
         <div className="App">
              <Routes>
-                <Route path="/reportDate/:urlReportDate" element={<DetailView />}>
-                    <Route index element={<div>Kies opdracht voor reportDate</div>} />
-                    <Route path="exercise/:id" element={<Exercise />} />
-                </Route>
+                <Route path="/" element={<DetailView />} />
+                <Route path="/reportDate/:urlReportDate" element={<DetailView />} />
                 <Route path="/reportDate/:urlReportDate/referenceDate/:urlReferenceDate" element={<DetailView />}>
-                    <Route index element={<div>Kies opdracht voor rapportDate</div>} />
+                    <Route index element={<div>Kies een opdracht</div>} />
                     <Route path="exercise/:id" element={<Exercise />} />
-                </Route>
-                <Route path="/" element={<DetailView />}>
-                    <Route index element={<div>Kies opdracht</div>} />
-                    <Route path="*" element={<div>no match</div>} />
                 </Route>
             </Routes>
         </div>
