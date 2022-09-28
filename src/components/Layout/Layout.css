@@ -11,5 +11,6 @@
 
 .detail-view {
     height: calc(100vh - 20px);
+    padding-top: 20px;
     overflow-y: auto;
 }
