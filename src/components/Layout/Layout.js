@@ -28,9 +28,12 @@ const Layout = () => {
     }, [urlReferenceDate])
 
     return (<>
-            {dateRange && <DateSelectorBar min={dateRange.min} max={dateRange.max} />}
+            
             <div className="overview-detailview-container">
-                <Overview workResults={workResults} referenceResults={referenceResults} />
+                <div className="overview-container">
+                    {dateRange && <DateSelectorBar min={dateRange.min} max={dateRange.max} />}
+                    <Overview workResults={workResults} referenceResults={referenceResults} />
+                </div>
                 <div className="detail-view">
                     <Outlet />
                 </div>

@@ -1,3 +1,15 @@
+
+.overview-detailview-container {
+    display: grid;
+    grid-template-columns: minmax(820px, 60%) minmax(440px, auto);
+}
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20px);
+}
+
 .detail-view {
+    height: calc(100vh - 20px);
     overflow-y: auto;
 }
