@@ -3,9 +3,9 @@ import { Outlet, useParams } from "react-router-dom";
 import { getDateRange, getWorkResults} from '../../utils';
 import DateSelectorBar from '../DateSelectorBar/DateSelectorBar';
 import Overview from '../Overview/Overview';
-import "./DetailView.css";
+import "./Layout.css";
 
-const DetailView = () => {
+const Layout = () => {
     const {urlReportDate, urlReferenceDate} = useParams();
     const [dateRange, setDateRange] = useState();
     const [workResults, setWorkResults] = useState([]);
@@ -38,4 +38,4 @@ const DetailView = () => {
         </>)
 }
 
-export default DetailView;
+export default Layout;
