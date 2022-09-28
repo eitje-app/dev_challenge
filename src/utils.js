@@ -63,3 +63,18 @@ export const getWorkResultsOverview = (workResults) => {
 
     return overviewMap;
 }
+
+export const hasSelectedExercise = (map, id) => {
+    let result;
+    if (map.has(id)) {
+        result = true;
+    } else {
+        result = false;
+        map.forEach((value) => {
+            if (!result && value instanceof Map && hasSelectedExercise(value, id)) {
+                result = true;
+            }
+        });
+    }
+    return result;
+}

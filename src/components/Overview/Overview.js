@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { META } from "../../constants";
-import { getWorkResultsOverview } from "../../utils";
+import { getWorkResultsOverview, hasSelectedExercise } from "../../utils";
 import { Link } from "react-router-dom";
 import './Overview.css';
 
@@ -51,6 +52,7 @@ const MetaData = ({value, refValue}) => {
 const OverviewRow = ({label, value, refValue, expanded=false}) => {
 
     const [showSubRows, setShowSubRows] = useState(expanded);
+    const {id} = useParams();
 
     const toggleShowRows = () => {
         setShowSubRows(!showSubRows);
@@ -63,9 +65,10 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
     if (hasSubRows) {
         value.forEach((subValue, key) => {
             let subRefValue = refValue instanceof Map ? refValue.get(key) : undefined;
+            let shouldBeExpanded = subValue instanceof Map && hasSelectedExercise(subValue, Number(id));
             if (key !== META) {
                 subRows.push(
-                    <OverviewRow label={key} value={subValue} refValue={subRefValue} key={i++} />
+                    <OverviewRow label={key} value={subValue} refValue={subRefValue} key={i++} expanded={shouldBeExpanded}/>
                 );
             }
         });
