@@ -52,7 +52,7 @@ const MetaData = ({value, refValue}) => {
 const OverviewRow = ({label, value, refValue, expanded=false}) => {
 
     const [showSubRows, setShowSubRows] = useState(expanded);
-    const {id} = useParams();
+    const {exerciseId} = useParams();
 
     const toggleShowRows = () => {
         setShowSubRows(!showSubRows);
@@ -65,7 +65,7 @@ const OverviewRow = ({label, value, refValue, expanded=false}) => {
     if (hasSubRows) {
         value.forEach((subValue, key) => {
             let subRefValue = refValue instanceof Map ? refValue.get(key) : undefined;
-            let shouldBeExpanded = subValue instanceof Map && hasSelectedExercise(subValue, Number(id));
+            let shouldBeExpanded = subValue instanceof Map && hasSelectedExercise(subValue, Number(exerciseId));
             if (key !== META) {
                 subRows.push(
                     <OverviewRow label={key} value={subValue} refValue={subRefValue} key={i++} expanded={shouldBeExpanded}/>

@@ -12,7 +12,7 @@ function App() {
                 <Route path="/reportDate/:urlReportDate" element={<Layout />} />
                 <Route path="/reportDate/:urlReportDate/referenceDate/:urlReferenceDate" element={<Layout />}>
                     <Route index element={<div>Kies een opdracht</div>} />
-                    <Route path="exercise/:id" element={<Exercise />} />
+                    <Route path="exercise/:exerciseId" element={<Exercise />} />
                 </Route>
             </Routes>
         </div>

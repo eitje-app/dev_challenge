@@ -5,20 +5,20 @@ import "./Exercise.css"
 
 const Exercise = () => {
 
-    const {id, urlReportDate} = useParams();
+    const {exerciseId, urlReportDate} = useParams();
     const [exerciseDetails, setExerciseDetails] = useState();
 
     useEffect(() => {
-        if (id !== undefined && urlReportDate !== undefined) {
-            getExerciseDetail(id, urlReportDate).then(serverResponse => setExerciseDetails(serverResponse.result));
+        if (exerciseId !== undefined && urlReportDate !== undefined) {
+            getExerciseDetail(exerciseId, urlReportDate).then(serverResponse => setExerciseDetails(serverResponse.result));
         }
-    }, [id, urlReportDate]);
+    }, [exerciseId, urlReportDate]);
 
     return (
         <div className="exercise-detail">
             <div className="exercise-detail-meta">
                 <div>{urlReportDate}</div>
-                <div>Opdracht: {id}</div>
+                <div>Opdracht: {exerciseId}</div>
                 {exerciseDetails && exerciseDetails.length > 0 && exerciseDetails[0].difficulty &&
                     <div>Difficulty: {exerciseDetails[0].difficulty}</div>
                 }
