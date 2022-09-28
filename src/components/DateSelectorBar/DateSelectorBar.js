@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import DateSelector from '../DateSelector/DateSelector';
 import "./DateSelectorBar.css"
 
@@ -12,23 +13,34 @@ const correctRefDate = (reportDate, referenceDate) => {
     return referenceDate;
 }
 
-const DateSelectorBar = ({min, max, reportDate, onReportDateChange, referenceDate, onReferenceDateChange}) => {
+const DateSelectorBar = ({min, max}) => {
+
+    const navigate = useNavigate();
+    const {urlReportDate, urlReferenceDate} = useParams();
+
+    const onReferenceDateChange = (newRefDate) => {
+        navigate(`/reportDate/${urlReportDate}/referenceDate/${newRefDate}`);
+    }
+
+    const onReportDateChange = useCallback((newReportDate, oldReferenceDate = urlReferenceDate) => {
+        let newRefDate = correctRefDate(newReportDate, oldReferenceDate);
+        let refString = newRefDate ? `/referenceDate/${newRefDate}` : "";
+        navigate(`/reportDate/${newReportDate}${refString}`);
+      }, [navigate, urlReferenceDate]);
 
     useEffect(() => {
-        if (reportDate === min) {
-            onReferenceDateChange(undefined);
-        } else {
-            const newRefDate = correctRefDate(reportDate, referenceDate);
-            onReferenceDateChange(newRefDate);
+        if (!urlReportDate || !urlReferenceDate) {
+            onReportDateChange(urlReportDate || max, urlReferenceDate);
         }
-    }, [min, reportDate, referenceDate, onReferenceDateChange])
+    }, [max, urlReportDate, urlReferenceDate, onReportDateChange]);
 
     return (
         <div className="date-selector-bar">
             <div className="date-selector-logo"></div>
-            <DateSelector title="Rapportdatum" min={min} max={max} selectedDate={reportDate} onDateChange={onReportDateChange} />
-            {referenceDate &&
-                <DateSelector title="Referentie datum" min={min} max={reportDate} selectedDate={referenceDate} onDateChange={onReferenceDateChange} />}
+            {urlReportDate && 
+                <DateSelector title="Rapportdatum" min={min} max={max} selectedDate={urlReportDate} onDateChange={onReportDateChange} />}
+            {urlReferenceDate &&
+                <DateSelector title="Referentie datum" min={min} max={urlReportDate} selectedDate={urlReferenceDate} onDateChange={onReferenceDateChange} />}
         </div>
     )
 }

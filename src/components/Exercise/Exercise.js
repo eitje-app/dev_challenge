@@ -3,21 +3,21 @@ import { useParams } from 'react-router-dom';
 import { getExerciseDetail } from '../../utils';
 import "./Exercise.css"
 
-const Exercise = ({reportDate}) => {
+const Exercise = () => {
 
-    const {id} = useParams();
+    const {id, urlReportDate} = useParams();
     const [exerciseDetails, setExerciseDetails] = useState();
 
     useEffect(() => {
-        if (id !== undefined && reportDate !== undefined) {
-            getExerciseDetail(id, reportDate).then(serverResponse => setExerciseDetails(serverResponse.result));
+        if (id !== undefined && urlReportDate !== undefined) {
+            getExerciseDetail(id, urlReportDate).then(serverResponse => setExerciseDetails(serverResponse.result));
         }
-    }, [id, reportDate]);
+    }, [id, urlReportDate]);
 
     return (
         <div className="exercise-detail">
             <div className="exercise-detail-meta">
-                <div>{reportDate}</div>
+                <div>{urlReportDate}</div>
                 <div>Opdracht: {id}</div>
                 {exerciseDetails && exerciseDetails.length > 0 && exerciseDetails[0].difficulty &&
                     <div>Difficulty: {exerciseDetails[0].difficulty}</div>
